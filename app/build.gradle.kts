@@ -2,7 +2,6 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -47,6 +46,8 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        buildConfig = true
+        resValues = true
     }
 
     signingConfigs {
@@ -70,15 +71,6 @@ android {
             )
             signingConfig = signingConfigs.getByName("release")
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.valueOf(libs.versions.java.get())
-        targetCompatibility = JavaVersion.valueOf(libs.versions.java.get())
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.valueOf(libs.versions.java.get()).toString()
     }
 
     composeOptions {
